@@ -1,26 +1,47 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class SuffixTree {
 
     private Vertex rootVertex;
-    private List<String> words = new ArrayList<String>();
+    private Map<Integer, String> wordMap = new HashMap<Integer, String>();
+
+    public void addWord(String word){
+        wordMap.put(wordMap.size(), word);
+    }
 
     public Vertex getRootVertex() {
         return rootVertex;
     }
 
-    public void addSuffix(String suffix){
-        for(Map.Entry<Edge, Vertex> entry : rootVertex.getChildren().entrySet()){
-            Edge edge = entry.getKey();
-            String vertexString = getVertexString(edge);
-            if(isSuffixPrefix(suffix, vertexString)){
-//                findSimilarityIndex;
-//                split edge if necessary;
-//                insert suffix;
+    public void addSuffix(String suffix, int wordIndex){
+        addSuffix(suffix, wordIndex, rootVertex, 0);
+    }
+
+    private void addSuffix(String suffix, int wordIndex, Vertex previousParent, int previousMatchPosition){
+        Vertex parentVertex =  findMatchingVertex(suffix, previousParent);
+        if(parentVertex != null){
+
+        } else{
+            Edge edge = new Edge(wordIndex, previousMatchPosition, suffix.length());
+            Vertex vertex = new Vertex(parentVertex, wordIndex);
+            previousParent.addChild(edge, vertex);
+        }
+    }
+
+    private Vertex findMatchingVertex(String suffix, Vertex parent) {
+        Vertex parentVertex = null;
+        Map<Edge,Vertex> children = parent.getChildren();
+        if(children != null) {
+            for(Map.Entry<Edge, Vertex> entry : children.entrySet()){
+                Edge edge = entry.getKey();
+                String vertexString = getVertexString(edge);
+                if(isSuffixPrefix(suffix, vertexString)) {
+                    parentVertex = entry.getValue();
+                }
             }
         }
+        return parentVertex;
     }
 
     private boolean isSuffixPrefix(String suffix, String vertexString) {
@@ -28,6 +49,10 @@ public class SuffixTree {
     }
 
     private String getVertexString(Edge edge) {
-        return words.get(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
+        return wordMap.get(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
+    }
+
+    public String getWord(int wordIndex) {
+        return wordMap.get(wordIndex);
     }
 }
