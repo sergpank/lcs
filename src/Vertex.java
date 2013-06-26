@@ -4,11 +4,11 @@ public class Vertex {
 
     private Vertex parent;
     private Map<Edge, Vertex> children = new HashMap<Edge, Vertex>();
-    private List<Integer> indexes = new ArrayList<Integer>();
+    private Set<Integer> indexes = new HashSet<Integer>();
 
-    public Vertex(Vertex parent, int index) {
+    public Vertex(Vertex parent, int wordIndex) {
         this.parent = parent;
-        indexes.add(index);
+        indexes.add(wordIndex);
     }
 
     public void addChild(Edge edge, Vertex vertex){
@@ -27,7 +27,11 @@ public class Vertex {
         indexes.add(wordIndex);
     }
 
-    public List<Integer> getIndexes() {
+    public Set<Integer> getIndexes() {
         return indexes;
+    }
+
+    public void removeChild(Edge edge) {
+        children.remove(edge);
     }
 }
