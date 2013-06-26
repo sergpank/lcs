@@ -6,6 +6,10 @@ public class SuffixTree {
     private Vertex rootVertex;
     private Map<Integer, String> wordMap = new HashMap<Integer, String>();
 
+    public SuffixTree() {
+        rootVertex = new Vertex(null, -1);
+    }
+
     public void addWord(String word){
         wordMap.put(wordMap.size(), word);
     }

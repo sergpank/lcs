@@ -3,7 +3,7 @@ import java.util.*;
 public class Vertex {
 
     private Vertex parent;
-    private Map<Edge, Vertex> children = new TreeMap<Edge, Vertex>();
+    private Map<Edge, Vertex> children = new HashMap<Edge, Vertex>();
     private List<Integer> indexes = new ArrayList<Integer>();
 
     public Vertex(Vertex parent, int index) {

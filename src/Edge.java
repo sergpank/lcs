@@ -32,4 +32,26 @@ public class Edge {
     public void setWordIndex(int wordIndex) {
         this.wordIndex = wordIndex;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Edge edge = (Edge) o;
+
+        if (endIndex != edge.endIndex) return false;
+        if (startIndex != edge.startIndex) return false;
+        if (wordIndex != edge.wordIndex) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = startIndex;
+        result = 31 * result + endIndex;
+        result = 31 * result + wordIndex;
+        return result;
+    }
 }
