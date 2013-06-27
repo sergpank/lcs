@@ -23,7 +23,7 @@ public class Vertex {
         return Collections.unmodifiableMap(children);
     }
 
-    public void addIndex(Integer wordIndex){
+    public void addWordIndex(Integer wordIndex){
         indexes.add(wordIndex);
     }
 

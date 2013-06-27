@@ -1,3 +1,4 @@
+import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,66 +23,67 @@ public class SuffixTree {
         addSuffix(suffix, wordIndex, rootVertex, startPosition);
     }
 
-    private void addSuffix(String suffix, int wordIndex, Vertex parent, int previousMatchPositionInSuffix){
-        Map.Entry<Edge, Vertex> matchingNode =  findMatchingVertex(suffix, parent);
+    private void addSuffix(String suffix, int wordIndex, Vertex parent, int shift){
+        Map.Entry<Edge, Vertex> matchingNode =  findMatchingVertex(suffix, parent, shift);
         if(matchingNode != null){
             Vertex vertex = matchingNode.getValue();
             Edge edge = matchingNode.getKey();
             String vertexString = getVertexString(edge);
-            int lastMatchIndex = getLasMatchIndex(suffix, vertexString);
+            int prefixLength = calcPrefixLength(suffix, vertexString, shift);
 
-            if(vertexIsPrefix(vertexString, lastMatchIndex)){
-                addSuffix(suffix.substring(lastMatchIndex), wordIndex, vertex, previousMatchPositionInSuffix + lastMatchIndex);
+            if(vertexIsPrefix(vertexString, prefixLength)){
+                addSuffix(suffix, wordIndex, vertex, shift + prefixLength);
             } else {
-                Vertex prefixVertex = new Vertex(parent, wordIndex);
-                int prefixEndIndex = edge.getStartIndex() + lastMatchIndex;
-                Edge prefixEdge = new Edge(wordIndex, edge.getStartIndex(), prefixEndIndex);
+                Edge prefixEdge = new Edge(edge.getWordIndex(), edge.getStartIndex(), edge.getStartIndex() + prefixLength);
+                Vertex prefixVertex = new Vertex(parent, edge.getWordIndex());
 
                 parent.removeChild(edge);
-                parent.addChild(prefixEdge, prefixVertex);
-                parent.addIndex(wordIndex);
 
-                Edge edgeChunk = new Edge(wordIndex, prefixEndIndex, edge.getEndIndex());
-                prefixVertex.addChild(edgeChunk, vertex);
+                edge.setStartIndex(edge.getStartIndex() + prefixLength);
+                vertex.addWordIndex(wordIndex);
 
-                int endIndex = wordMap.get(wordIndex).length();
-                Edge newEdge = new Edge(wordIndex, previousMatchPositionInSuffix + lastMatchIndex, endIndex);
+                Edge newEdge = new Edge(wordIndex, shift + prefixLength, suffix.length());
                 Vertex newVertex = new Vertex(prefixVertex, wordIndex);
 
+                parent.addChild(prefixEdge, prefixVertex);
+                parent.addWordIndex(wordIndex);
+                prefixVertex.addChild(edge, vertex);
                 prefixVertex.addChild(newEdge, newVertex);
-                prefixVertex.addIndex(wordIndex);
+                prefixVertex.addWordIndex(wordIndex);
             }
 
         } else{
-            Edge edge = new Edge(wordIndex, previousMatchPositionInSuffix, previousMatchPositionInSuffix + suffix.length());
+            Edge edge = new Edge(wordIndex, shift, suffix.length());
             Vertex vertex = new Vertex(parent, wordIndex);
             parent.addChild(edge, vertex);
         }
     }
 
-    private boolean vertexIsPrefix(String vertexString, int lastMatchIndex) {
-        return vertexString.length() - lastMatchIndex == 1;
+    private boolean vertexIsPrefix(String vertexString, int prefixLength) {
+        return vertexString.length() - prefixLength <= 1;
     }
 
-    private int getLasMatchIndex(String suffix, String vertexString) {
+    private int calcPrefixLength(String suffix, String vertexString, int shift) {
         int cnt = 0;
-        int length = Math.min(suffix.length(), vertexString.length());
+        int length = Math.min(suffix.length() - shift, vertexString.length());
         for(int i = 0; i < length; i++){
-            if (suffix.charAt(i) == vertexString.charAt(i)) {
+            if (suffix.charAt(i + shift) == vertexString.charAt(i)) {
                 ++cnt;
+            } else{
+                break;
             }
         }
         return cnt;
     }
 
-    private Map.Entry<Edge, Vertex> findMatchingVertex(String suffix, Vertex parent) {
+    private Map.Entry<Edge, Vertex> findMatchingVertex(String suffix, Vertex parent, int shift) {
         Map.Entry<Edge, Vertex> match = null;
         Map<Edge,Vertex> children = parent.getChildren();
         if(children != null) {
             for(Map.Entry<Edge, Vertex> entry : children.entrySet()){
                 Edge edge = entry.getKey();
                 String vertexString = getVertexString(edge);
-                if(isVertexSuitable(suffix, vertexString)) {
+                if(isVertexSuitable(suffix, vertexString, shift)) {
                     match = entry;
                 }
             }
@@ -89,8 +91,8 @@ public class SuffixTree {
         return match;
     }
 
-    private boolean isVertexSuitable(String suffix, String vertexString) {
-        return vertexString.charAt(0) == suffix.charAt(0);
+    private boolean isVertexSuitable(String suffix, String vertexString, int shift) {
+        return vertexString.charAt(0) == suffix.charAt(shift);
     }
 
     private String getVertexString(Edge edge) {
@@ -99,5 +101,26 @@ public class SuffixTree {
 
     public String getWord(int wordIndex) {
         return wordMap.get(wordIndex);
+    }
+
+    @Override
+    public String toString() {
+        return printTree(rootVertex, "", 0);
+    }
+
+    private String printTree(Vertex vertex, String string, int level) {
+        if(vertex.getParent() == null){
+            string += "ROOT\n";
+        }
+        for(Map.Entry<Edge, Vertex> entry : vertex.getChildren().entrySet()){
+            Edge edge = entry.getKey();
+            for (int i = 0; i < level; i++){
+                string += "    ";
+            }
+            String suffix = this.getWord(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
+            string += MessageFormat.format("{0} {1}->{2}", suffix, edge.getStartIndex(), edge.getEndIndex());
+            string += printTree(entry.getValue(), string, level + 1);
+        }
+        return string;
     }
 }

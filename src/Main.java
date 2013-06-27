@@ -10,14 +10,16 @@ public class Main {
         trie.addWord(data2);
         for(int i = 0; i < data1.length() - 1; i++){
             String substring = data1.substring(i, data1.length());
-            System.out.println("0 :: " + substring);
-            trie.addSuffix(substring, 0, i);
+            System.out.println(i + " :: " + substring);
+            trie.addSuffix(data1, 0, i);
+//            printTree(trie.getRootVertex(), trie, 0);
         }
+        System.out.println();
 
         for(int i = 0; i < data2.length() - 1; i++){
             String substring = data2.substring(i, data2.length());
-            System.out.println("1 :: " + substring);
-            trie.addSuffix(substring, 1, i);
+            System.out.println(i + " :: " + substring);
+            trie.addSuffix(data2, 1, i);
         }
 
         printTree(trie.getRootVertex(), trie, 0);
@@ -33,7 +35,7 @@ public class Main {
                 System.out.print("    ");
             }
             String suffix = trie.getWord(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
-            System.out.println(suffix);
+            System.out.println(suffix + " " + edge.getStartIndex() + "->" + edge.getEndIndex());
             printTree(entry.getValue(), trie, level + 1);
         }
     }
