@@ -9,6 +9,7 @@ public class Main {
         String data3 = "cde@";
         trie.addWord(data1);
         trie.addWord(data2);
+        trie.addWord(data3);
         for(int i = 0; i < data1.length() - 1; i++){
             String substring = data1.substring(i, data1.length());
             System.out.println(i + " :: " + substring);
@@ -21,6 +22,13 @@ public class Main {
             String substring = data2.substring(i, data2.length());
             System.out.println(i + " :: " + substring);
             trie.addSuffix(data2, 1, i);
+//            printTree(trie.getRootVertex(), trie, 0);
+        }
+
+        for(int i = 0; i < data3.length() - 1; i++){
+            String substring = data3.substring(i, data3.length());
+            System.out.println(i + " :: " + substring);
+            trie.addSuffix(data3, 2, i);
 //            printTree(trie.getRootVertex(), trie, 0);
         }
 
