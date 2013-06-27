@@ -4,8 +4,9 @@ public class Main {
 
     public static void main(String[] args) {
         SuffixTree trie = new SuffixTree();
-        String data1 = "abbababb@";
-        String data2 = "bbabbaba@";
+        String data1 = "abc@";
+        String data2 = "bcd@";
+        String data3 = "cde@";
         trie.addWord(data1);
         trie.addWord(data2);
         for(int i = 0; i < data1.length() - 1; i++){
@@ -20,8 +21,10 @@ public class Main {
             String substring = data2.substring(i, data2.length());
             System.out.println(i + " :: " + substring);
             trie.addSuffix(data2, 1, i);
+//            printTree(trie.getRootVertex(), trie, 0);
         }
 
+        System.out.println();
         printTree(trie.getRootVertex(), trie, 0);
     }
 
@@ -35,7 +38,11 @@ public class Main {
                 System.out.print("    ");
             }
             String suffix = trie.getWord(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
-            System.out.println(suffix + " " + edge.getStartIndex() + "->" + edge.getEndIndex());
+            System.out.print(suffix + " " + edge.getStartIndex() + "->" + edge.getEndIndex() + " | ");
+            for(Integer i : vertex.getIndexes()){
+                System.out.print(i + ", ");
+            }
+            System.out.println();
             printTree(entry.getValue(), trie, level + 1);
         }
     }

@@ -6,9 +6,8 @@ public class Vertex {
     private Map<Edge, Vertex> children = new HashMap<Edge, Vertex>();
     private Set<Integer> indexes = new HashSet<Integer>();
 
-    public Vertex(Vertex parent, int wordIndex) {
+    public Vertex(Vertex parent) {
         this.parent = parent;
-        indexes.add(wordIndex);
     }
 
     public void addChild(Edge edge, Vertex vertex){
@@ -33,5 +32,9 @@ public class Vertex {
 
     public void removeChild(Edge edge) {
         children.remove(edge);
+    }
+
+    public void addChildren(Map<Edge, Vertex> children) {
+        this.children.putAll(children);
     }
 }

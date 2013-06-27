@@ -8,7 +8,7 @@ public class SuffixTree {
     private Map<Integer, String> wordMap = new HashMap<Integer, String>();
 
     public SuffixTree() {
-        rootVertex = new Vertex(null, -1);
+        rootVertex = new Vertex(null);
     }
 
     public Vertex getRootVertex() {
@@ -31,11 +31,16 @@ public class SuffixTree {
             String vertexString = getVertexString(edge);
             int prefixLength = calcPrefixLength(suffix, vertexString, shift);
 
-            if(vertexIsPrefix(vertexString, prefixLength)){
+            if(suffix.length() - shift - prefixLength == 0 ){
+                vertex.addWordIndex(wordIndex);
+                return;
+            } else if(vertexIsPrefix(vertexString, prefixLength)){
+                vertex.addWordIndex(wordIndex);
                 addSuffix(suffix, wordIndex, vertex, shift + prefixLength);
             } else {
                 Edge prefixEdge = new Edge(edge.getWordIndex(), edge.getStartIndex(), edge.getStartIndex() + prefixLength);
-                Vertex prefixVertex = new Vertex(parent, edge.getWordIndex());
+                Vertex prefixVertex = new Vertex(parent);
+                prefixVertex.addChildren(vertex.getChildren());
 
                 parent.removeChild(edge);
 
@@ -43,24 +48,31 @@ public class SuffixTree {
                 vertex.addWordIndex(wordIndex);
 
                 Edge newEdge = new Edge(wordIndex, shift + prefixLength, suffix.length());
-                Vertex newVertex = new Vertex(prefixVertex, wordIndex);
+                Vertex newVertex = new Vertex(prefixVertex);
+                newVertex.addWordIndex(wordIndex);
 
                 parent.addChild(prefixEdge, prefixVertex);
                 parent.addWordIndex(wordIndex);
+
                 prefixVertex.addChild(edge, vertex);
+                prefixVertex.addWordIndex(edge.getWordIndex());
+
                 prefixVertex.addChild(newEdge, newVertex);
                 prefixVertex.addWordIndex(wordIndex);
             }
 
         } else{
             Edge edge = new Edge(wordIndex, shift, suffix.length());
-            Vertex vertex = new Vertex(parent, wordIndex);
+            Vertex vertex = new Vertex(parent);
+            vertex.addWordIndex(wordIndex);
+
             parent.addChild(edge, vertex);
+            parent.addWordIndex(wordIndex);
         }
     }
 
     private boolean vertexIsPrefix(String vertexString, int prefixLength) {
-        return vertexString.length() - prefixLength <= 1;
+        return vertexString.length() <= prefixLength;
     }
 
     private int calcPrefixLength(String suffix, String vertexString, int shift) {
@@ -85,6 +97,7 @@ public class SuffixTree {
                 String vertexString = getVertexString(edge);
                 if(isVertexSuitable(suffix, vertexString, shift)) {
                     match = entry;
+                    break;
                 }
             }
         }
