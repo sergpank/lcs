@@ -1,3 +1,5 @@
+package old;
+
 import java.util.*;
 
 public class Vertex {
@@ -7,7 +9,12 @@ public class Vertex {
     private Set<Integer> indexes = new HashSet<Integer>();
 
     public Vertex(Vertex parent) {
+        this(parent, new HashSet<Integer>());
+    }
+
+    public Vertex(Vertex parent, Set<Integer> indexes) {
         this.parent = parent;
+        this.indexes.addAll(indexes);
     }
 
     public void addChild(Edge edge, Vertex vertex){

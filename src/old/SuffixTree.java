@@ -1,3 +1,5 @@
+package old;
+
 import java.util.*;
 
 public class SuffixTree {
@@ -41,7 +43,7 @@ public class SuffixTree {
                 addSuffix(suffix, wordIndex, vertex, shift + prefixLength);
             } else {
                 Edge prefixEdge = new Edge(edge.getWordIndex(), edge.getStartIndex(), edge.getStartIndex() + prefixLength);
-                Vertex prefixVertex = new Vertex(parent);
+                Vertex prefixVertex = new Vertex(parent, vertex.getIndexes());
 
                 parent.removeChild(edge);
 

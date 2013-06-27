@@ -1,3 +1,5 @@
+package old;
+
 public class Edge {
     private int startIndex;
     private int endIndex;
