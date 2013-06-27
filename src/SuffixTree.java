@@ -1,6 +1,4 @@
-import java.text.MessageFormat;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class SuffixTree {
 
@@ -17,35 +15,37 @@ public class SuffixTree {
 
     public void addWord(String word){
         wordMap.put(wordMap.size(), word);
+        int wordIndex = wordMap.size() - 1;
+        for (int i = 0; i < word.length() - 1; i++) {
+            addSuffix(word, wordIndex, i);
+        }
     }
 
-    public void addSuffix(String suffix, int wordIndex, int startPosition){
+    public void addSuffix(String suffix, int wordIndex, int startPosition) {
         addSuffix(suffix, wordIndex, rootVertex, startPosition);
     }
 
-    private void addSuffix(String suffix, int wordIndex, Vertex parent, int shift){
-        Map.Entry<Edge, Vertex> matchingNode =  findMatchingVertex(suffix, parent, shift);
-        if(matchingNode != null){
+    private void addSuffix(String suffix, int wordIndex, Vertex parent, int shift) {
+        Map.Entry<Edge, Vertex> matchingNode = findMatchingVertex(suffix, parent, shift);
+        if (matchingNode != null) {
             Vertex vertex = matchingNode.getValue();
             Edge edge = matchingNode.getKey();
             String vertexString = getVertexString(edge);
             int prefixLength = calcPrefixLength(suffix, vertexString, shift);
 
-            if(suffix.length() - shift - prefixLength == 0 ){
+            if (suffix.length() - shift - prefixLength == 0) {
                 vertex.addWordIndex(wordIndex);
                 return;
-            } else if(vertexIsPrefix(vertexString, prefixLength)){
+            } else if (vertexIsPrefix(vertexString, prefixLength)) {
                 vertex.addWordIndex(wordIndex);
                 addSuffix(suffix, wordIndex, vertex, shift + prefixLength);
             } else {
                 Edge prefixEdge = new Edge(edge.getWordIndex(), edge.getStartIndex(), edge.getStartIndex() + prefixLength);
                 Vertex prefixVertex = new Vertex(parent);
-                prefixVertex.addChildren(vertex.getChildren());
 
                 parent.removeChild(edge);
 
                 edge.setStartIndex(edge.getStartIndex() + prefixLength);
-                vertex.addWordIndex(wordIndex);
 
                 Edge newEdge = new Edge(wordIndex, shift + prefixLength, suffix.length());
                 Vertex newVertex = new Vertex(prefixVertex);
@@ -60,14 +60,12 @@ public class SuffixTree {
                 prefixVertex.addChild(newEdge, newVertex);
                 prefixVertex.addWordIndex(wordIndex);
             }
-
-        } else{
+        } else {
             Edge edge = new Edge(wordIndex, shift, suffix.length());
             Vertex vertex = new Vertex(parent);
             vertex.addWordIndex(wordIndex);
 
             parent.addChild(edge, vertex);
-            parent.addWordIndex(wordIndex);
         }
     }
 
@@ -78,10 +76,10 @@ public class SuffixTree {
     private int calcPrefixLength(String suffix, String vertexString, int shift) {
         int cnt = 0;
         int length = Math.min(suffix.length() - shift, vertexString.length());
-        for(int i = 0; i < length; i++){
+        for (int i = 0; i < length; i++) {
             if (suffix.charAt(i + shift) == vertexString.charAt(i)) {
                 ++cnt;
-            } else{
+            } else {
                 break;
             }
         }
@@ -90,12 +88,12 @@ public class SuffixTree {
 
     private Map.Entry<Edge, Vertex> findMatchingVertex(String suffix, Vertex parent, int shift) {
         Map.Entry<Edge, Vertex> match = null;
-        Map<Edge,Vertex> children = parent.getChildren();
-        if(children != null) {
-            for(Map.Entry<Edge, Vertex> entry : children.entrySet()){
+        Map<Edge, Vertex> children = parent.getChildren();
+        if (children != null) {
+            for (Map.Entry<Edge, Vertex> entry : children.entrySet()) {
                 Edge edge = entry.getKey();
                 String vertexString = getVertexString(edge);
-                if(isVertexSuitable(suffix, vertexString, shift)) {
+                if (isVertexSuitable(suffix, vertexString, shift)) {
                     match = entry;
                     break;
                 }
@@ -116,24 +114,35 @@ public class SuffixTree {
         return wordMap.get(wordIndex);
     }
 
-    @Override
-    public String toString() {
-        return printTree(rootVertex, "", 0);
+    public String getLongestSubstring() {
+        Set<String> subSet = Collections.synchronizedSet(new TreeSet<String>(new Comparator<String>() {
+            @Override
+            public int compare(String string1, String string2) {
+                return string2.length() - string1.length();
+            }
+        }));
+
+        getSubstrings(rootVertex, subSet, "");
+
+        for (String s : subSet) {
+            System.out.println(s);
+        }
+
+        return subSet.iterator().next();
     }
 
-    private String printTree(Vertex vertex, String string, int level) {
-        if(vertex.getParent() == null){
-            string += "ROOT\n";
-        }
-        for(Map.Entry<Edge, Vertex> entry : vertex.getChildren().entrySet()){
-            Edge edge = entry.getKey();
-            for (int i = 0; i < level; i++){
-                string += "    ";
+    private void getSubstrings(Vertex parent, Set<String> strings, String substring) {
+        int commonSubstringsCounter = 0;
+        for(Map.Entry<Edge, Vertex> entry : parent.getChildren().entrySet()){
+            if(entry.getValue().getIndexes().size() == wordMap.size()){
+                Edge edge = entry.getKey();
+                String vertexString = wordMap.get(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
+                getSubstrings(entry.getValue(), strings, substring + vertexString);
+                commonSubstringsCounter++;
             }
-            String suffix = this.getWord(edge.getWordIndex()).substring(edge.getStartIndex(), edge.getEndIndex());
-            string += MessageFormat.format("{0} {1}->{2}", suffix, edge.getStartIndex(), edge.getEndIndex());
-            string += printTree(entry.getValue(), string, level + 1);
         }
-        return string;
+        if(commonSubstringsCounter == 0){
+            strings.add(substring);
+        }
     }
 }
