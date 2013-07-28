@@ -1,6 +1,11 @@
 package old;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SuffixTree {
 
@@ -123,12 +128,7 @@ public class SuffixTree {
                 return string2.length() - string1.length();
             }
         }));
-
         getSubstrings(rootVertex, subSet, "");
-
-        for (String s : subSet) {
-            System.out.println(s);
-        }
 
         return subSet.iterator().next();
     }
