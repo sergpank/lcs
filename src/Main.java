@@ -1,4 +1,4 @@
-import old.SuffixTree;
+import stree.SuffixTree;
 
 import java.io.IOException;
 import java.text.MessageFormat;
@@ -7,12 +7,17 @@ import java.util.Random;
 
 public class Main {
 
-    public static final int STRINGS_NR = 10;
+    public static final int STRINGS_NR = 2;
 
     public static void main(String[] args) throws IOException {
         SuffixTree trie = new SuffixTree();
 
-        String commonSubsequence = "uasivyoiuesbvryaosiudfhasldkjfnhcasdjhfasudvoaewiuryoaisudfyvudashfvioaushdfoiuashdfoiuasdfhcnuscdhfoasuvhdfoasiudhfcnoasdfihvabsduhfcanosdufhvasodiufhnacsdufhvashodfuiacnshdofuhfasodufhsadfiuhsuvhanvaosviduxlnvuretyqreqpweryxewmruvbszxcvhgasdfyqwerasdfljhcxvzxcvuazxcnvvberuqwoerbvasdfhavsjdkfhasdoufhasdoufsydfouawyeofuiavwyeoasiudhfasdhfaosdufhoaweiufadufhasdfhasncaudsfhauertyabvrutyasodufhvahsdfuahsdiufhaeryaoiusydroavsudofhasdfjhaoseiuryabsdouraysueryaboseiuryaosdiurhasdjfahseuiryaoeiurayvsdr";
+        String commonSubsequence = "uasivyoiuesbvryaosiudfhasldkjfnhcasdjhfasudvoaewiuryoaisudfyvudashfvioaushdf" +
+                "oiuashdfoiuasdfhcnuscdhfoasuvhdfoasiudhfcnoasdfihvabsduhfcanosdufhvasodiufhnacsdufhvashodfuiacn" +
+                "shdofuhfasodufhsadfiuhsuvhanvaosviduxlnvuretyqreqpweryxewmruvbszxcvhgasdfyqwerasdfljhcxvzxcvuaz" +
+                "xcnvvberuqwoerbvasdfhavsjdkfhasdoufhasdoufsydfouawyeofuiavwyeoasiudhfasdhfaosdufhoaweiufadufhas" +
+                "dfhasncaudsfhauertyabvrutyasodufhvahsdfuahsdiufhaeryaoiusydroavsudofhasdfjhaoseiuryabsdouraysue" +
+                "ryaboseiuryaosdiurhasdjfahseuiryaoeiurayvsdr";
 
         long startTime = System.nanoTime();
         int length = 9500;
