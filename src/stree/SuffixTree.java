@@ -40,8 +40,8 @@ public class SuffixTree {
                 --remainder;
                 return;
             } else {
-                activePoint.setActiveNode(rootVertex);
                 activePoint.setActiveEdge(edge);
+                activePoint.setActiveNode(edge.getStartVertex());
                 activePoint.setActiveLength(1);
             }
         } else {
@@ -49,6 +49,15 @@ public class SuffixTree {
             char charToInsert = subsuffix.charAt(remainder - 1);
             if (activePointChar == charToInsert) {
                 activePoint.incrementActiveLength(subsuffix.charAt(remainder - 1), wordMap, wordIndex);
+            } else if (activePoint.getActiveLength() == activePoint.getActiveEdge().length() &&
+                    activePoint.getActiveEdge().getEndVertex().findEdgeStartingWith(charToInsert) == null) {
+                Vertex nextVertex = activePoint.getActiveEdge().getEndVertex();
+                if (nextVertex == null) {
+                    nextVertex = new Vertex();
+                }
+                Edge newEdge = new Edge(wordMap, wordIndex, new Index(currentPosition.index - 1), currentPosition, nextVertex, null);
+                activePoint.setActiveNode(nextVertex);
+                nextVertex.addEdge(newEdge);
             } else {
                 splitEdgeAndInsertNode(wordIndex, subsuffix);
             }
@@ -62,7 +71,6 @@ public class SuffixTree {
         Edge[] splitEdges = activePoint.getActiveEdge().split(activePoint.getActiveLength(), newVertex);
         newVertex.addEdge(newEdge);
         newVertex.addEdge(splitEdges[1]);
-        newEdge.addWordIndexes(splitEdges[0].getWordIndexes());
 
         activePoint.getActiveNode().getEdges().remove(activePoint.getActiveEdge());
         activePoint.getActiveNode().addEdge(splitEdges[0]);
@@ -117,14 +125,14 @@ public class SuffixTree {
                     int startIndex = edge.getStartIndex().index;
                     int endIndex = edge.getEndIndex().index;
 
-                    String vertexString = wordMap.get(edge.getWordIndex()).substring(startIndex, endIndex);
+                    String edgeString = edge.getString();
 
                     Vertex nextVertex = edge.getEndVertex();
                     if (nextVertex != null) {
-                        getSubstrings(nextVertex, strings, substring + vertexString);
+                        getSubstrings(nextVertex, strings, substring + edgeString);
+                    } else {
+                        strings.add(substring + edgeString);
                     }
-                } else {
-                    strings.add(substring);
                 }
             }
         }

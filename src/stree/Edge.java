@@ -68,6 +68,10 @@ public class Edge {
 
     @Override
     public String toString() {
+        return wordMap.get(wordIndex).substring(startIndex.index, endIndex.index) + " " + wordIndexes.toString();
+    }
+
+    public String getString(){
         return wordMap.get(wordIndex).substring(startIndex.index, endIndex.index);
     }
 
@@ -100,7 +104,7 @@ public class Edge {
     public Edge[] split(int activeLength, Vertex newVertex) {
         Edge[] splitEdges = new Edge[2];
         splitEdges[0] = new Edge(wordMap, wordIndex, startIndex, new Index(startIndex.index + activeLength), startVertex, newVertex);
-        splitEdges[1] = new Edge(wordMap, wordIndex, new Index(startIndex.index + activeLength), endIndex, newVertex, null);
+        splitEdges[1] = new Edge(wordMap, wordIndex, new Index(startIndex.index + activeLength), endIndex, newVertex, endVertex);
 
         splitEdges[0].addWordIndexes(wordIndexes);
         splitEdges[1].addWordIndexes(wordIndexes);
