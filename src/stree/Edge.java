@@ -38,16 +38,12 @@ public class Edge {
         this.wordIndexes.addAll(wordIndexes);
     }
 
-    public Index getStartIndex() {
-        return startIndex;
-    }
-
     public Index getEndIndex() {
         return endIndex;
     }
 
-    public int getWordIndex() {
-        return wordIndex;
+    public void setEndIndex(Index endIndex){
+        this.endIndex = endIndex;
     }
 
     public Vertex getStartVertex() {
@@ -110,5 +106,9 @@ public class Edge {
         splitEdges[1].addWordIndexes(wordIndexes);
 
         return splitEdges;
+    }
+
+    public void setWordIndex(int wordIndex) {
+        this.wordIndex = wordIndex;
     }
 }

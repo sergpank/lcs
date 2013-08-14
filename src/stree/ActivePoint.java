@@ -1,7 +1,5 @@
 package stree;
 
-import java.util.Map;
-
 public class ActivePoint {
     private Vertex activeNode;
     private Edge activeEdge;
@@ -37,7 +35,7 @@ public class ActivePoint {
         this.activeLength = activeLength;
     }
 
-    public void incrementActiveLength(char c, Map<Integer, String> wordMap, int wordIndex) {
+    public void incrementActiveLength(char c, int wordIndex) {
         if (activeLength == activeEdge.length()) {
             activeLength = 1;
             activeEdge.addWordIndex(wordIndex);
@@ -50,5 +48,19 @@ public class ActivePoint {
 
     public void decrementActiveLength() {
         --activeLength;
+    }
+
+    public boolean isNeedToInsert(char c, String subsuffix, int wordIndex) {
+        if(activeLength == activeEdge.length()){
+            return activeEdge.getEndVertex().findEdgeStartingWith(c) == null;
+        } else if(activeLength > activeEdge.length()){
+            subsuffix = subsuffix.substring(activeEdge.length());
+            activeLength -= activeEdge.length();
+            activeEdge.addWordIndex(wordIndex);
+            activeEdge = activeEdge.getEndVertex().findEdgeStartingWith(subsuffix.charAt(0));
+            return isNeedToInsert(c, subsuffix, wordIndex);
+        } else{
+            return activeEdge.getCharAt(activeLength) != c;
+        }
     }
 }

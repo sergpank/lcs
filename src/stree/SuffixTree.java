@@ -26,6 +26,7 @@ public class SuffixTree {
             ++currentPosition.index;
             String subsuffix = getSubsuffix(word);
             addSuffix(subsuffix, wordIndex);
+            System.out.println(this);
             ++remainder;
         }
     }
@@ -42,24 +43,21 @@ public class SuffixTree {
             } else {
                 activePoint.setActiveEdge(edge);
                 activePoint.setActiveNode(edge.getStartVertex());
-                activePoint.setActiveLength(1);
+                activePoint.incrementActiveLength(subsuffix.charAt(0), wordIndex);
             }
         } else {
-            char activePointChar = activePoint.getActiveEdge().getCharAt(activePoint.getActiveLength());
-            char charToInsert = subsuffix.charAt(remainder - 1);
-            if (activePointChar == charToInsert) {
-                activePoint.incrementActiveLength(subsuffix.charAt(remainder - 1), wordMap, wordIndex);
-            } else if (activePoint.getActiveLength() == activePoint.getActiveEdge().length() &&
-                    activePoint.getActiveEdge().getEndVertex().findEdgeStartingWith(charToInsert) == null) {
-                Vertex nextVertex = activePoint.getActiveEdge().getEndVertex();
-                if (nextVertex == null) {
-                    nextVertex = new Vertex();
-                }
-                Edge newEdge = new Edge(wordMap, wordIndex, new Index(currentPosition.index - 1), currentPosition, nextVertex, null);
-                activePoint.setActiveNode(nextVertex);
-                nextVertex.addEdge(newEdge);
-            } else {
+            if(activePoint.getActiveLength() == activePoint.getActiveEdge().length() && activePoint.getActiveEdge().getEndVertex() == null){
+                activePoint.getActiveEdge().setEndIndex(currentPosition);
+                activePoint.getActiveEdge().addWordIndex(wordIndex);
+                activePoint.getActiveEdge().setWordIndex(wordIndex);
+            }
+            else if (activePoint.isNeedToInsert(subsuffix.charAt(subsuffix.length() - 1), subsuffix, wordIndex)) {
                 splitEdgeAndInsertNode(wordIndex, subsuffix);
+            } else {
+                activePoint.incrementActiveLength(subsuffix.charAt(remainder - 1), wordIndex);
+//            } else if (activePoint.getActiveLength() == activePoint.getActiveEdge().length() &&
+//                    activePoint.getActiveEdge().getEndVertex().findEdgeStartingWith(charToInsert) == null) {
+//                activePoint.getActiveEdge().setEndIndex(currentPosition);
             }
         }
     }
@@ -68,17 +66,29 @@ public class SuffixTree {
         Vertex newVertex = new Vertex();
         Edge newEdge = new Edge(wordMap, wordIndex, new Index(currentPosition.index - 1), currentPosition, newVertex, null);
 
-        Edge[] splitEdges = activePoint.getActiveEdge().split(activePoint.getActiveLength(), newVertex);
-        newVertex.addEdge(newEdge);
-        newVertex.addEdge(splitEdges[1]);
+        if (activePoint.getActiveEdge().length() == activePoint.getActiveLength()) {
+            if (activePoint.getActiveEdge().getEndIndex() == currentPosition) {
+                activePoint.getActiveEdge().setEndIndex(new Index(currentPosition.index));
+            }
+            activePoint.getActiveEdge().getEndVertex().addEdge(newEdge);
+            newVertex = activePoint.getActiveEdge().getStartVertex();
+            activePoint.getActiveEdge().addWordIndex(wordIndex);
+        } else {
+            Edge[] splitEdges = activePoint.getActiveEdge().split(activePoint.getActiveLength(), newVertex);
+            newVertex.addEdge(newEdge);
+            newVertex.addEdge(splitEdges[1]);
 
-        activePoint.getActiveNode().getEdges().remove(activePoint.getActiveEdge());
-        activePoint.getActiveNode().addEdge(splitEdges[0]);
-        splitEdges[0].addWordIndex(wordIndex);
+            activePoint.getActiveNode().getEdges().remove(activePoint.getActiveEdge());
+            activePoint.getActiveNode().addEdge(splitEdges[0]);
+            splitEdges[0].addWordIndex(wordIndex);
+        }
 
         --remainder;
 
-        if (activePoint.getActiveNode() != rootVertex) {
+        if (activePoint.getActiveNode() == rootVertex) {
+            activePoint.setActiveEdge(rootVertex.findEdgeStartingWith(suffix.charAt(1)));
+            activePoint.decrementActiveLength();
+        } else {
             Vertex suffixLink = activePoint.getActiveNode().getSuffixLink();
             if (suffixLink != null) {
                 activePoint.setActiveNode(suffixLink);
@@ -87,9 +97,7 @@ public class SuffixTree {
             }
             Edge newActiveEdge = activePoint.getActiveNode().findEdgeStartingWith(activePoint.getActiveEdge().getFirstChar());
             activePoint.setActiveEdge(newActiveEdge);
-        } else {
-            activePoint.setActiveEdge(rootVertex.findEdgeStartingWith(suffix.charAt(1)));
-            activePoint.decrementActiveLength();
+//            activePoint.verifyAndFixLength(suffix);
         }
 
         if (candidateForSuffixLink != null) {
@@ -122,19 +130,39 @@ public class SuffixTree {
         if (node != null) {
             for (Edge edge : node.getEdges()) {
                 if (edge.getWordIndexes().size() == wordMap.size()) {
-                    int startIndex = edge.getStartIndex().index;
-                    int endIndex = edge.getEndIndex().index;
-
                     String edgeString = edge.getString();
-
+                    strings.add(substring + edgeString);
                     Vertex nextVertex = edge.getEndVertex();
-                    if (nextVertex != null) {
-                        getSubstrings(nextVertex, strings, substring + edgeString);
-                    } else {
-                        strings.add(substring + edgeString);
-                    }
+                    getSubstrings(nextVertex, strings, substring + edgeString);
                 }
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return printTree(rootVertex, 0);
+    }
+
+    private String printTree(Vertex vertex, int level) {
+        String string = new String();
+
+        for (Edge e : vertex.getEdges()) {
+            string += printIndent(level);
+            string += e + "\n";
+            if (e.getEndVertex() != null) {
+                string += printTree(e.getEndVertex(), level + 1);
+            }
+        }
+
+        return string;
+    }
+
+    private String printIndent(int level) {
+        String indent = "";
+        for (int i = 0; i < level; i++) {
+            indent += "\t";
+        }
+        return indent;
     }
 }

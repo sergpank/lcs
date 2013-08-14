@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60c0f886-ce73-4332-9892-eb203fe2aee9" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stree/ActivePoint.java" afterPath="$PROJECT_DIR$/src/stree/ActivePoint.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stree/Edge.java" afterPath="$PROJECT_DIR$/src/stree/Edge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MainTest.java" afterPath="$PROJECT_DIR$/src/MainTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/stree/SuffixTree.java" afterPath="$PROJECT_DIR$/src/stree/SuffixTree.java" />
@@ -10,15 +11,15 @@
     <ignored path="SuffixTree.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Node.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1372197015125" ignored="false" />
-    <file path="/SuffixTree.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376455520699" ignored="false" />
-    <file path="/Edge.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376453301228" ignored="false" />
+    <file path="/SuffixTree.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376514766492" ignored="false" />
+    <file path="/Edge.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376498564838" ignored="false" />
     <file path="/Main.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1374996031626" ignored="false" />
-    <file path="/fragment.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376455303136" ignored="false" />
+    <file path="/fragment.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376515016296" ignored="false" />
     <file path="/Vertex.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376416944581" ignored="false" />
-    <file path="/Dummy.txt" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376451136483" ignored="false" />
+    <file path="/Dummy.txt" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376497811091" ignored="false" />
     <file path="/a.dummy" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1374993530359" ignored="false" />
-    <file path="/ActivePoint.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376421895011" ignored="false" />
-    <file path="/MainTest.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376452030117" ignored="false" />
+    <file path="/ActivePoint.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376513493820" ignored="false" />
+    <file path="/MainTest.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376513912449" ignored="false" />
     <file path="/Index.java" changelist="60c0f886-ce73-4332-9892-eb203fe2aee9" time="1376367611880" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,6 +35,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -107,7 +109,7 @@
       </breakpoint>
     </exception_breakpoints>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/stree/ActivePoint.java" line="20" class="stree.ActivePoint" package="stree">
+      <breakpoint url="file://$PROJECT_DIR$/src/stree/ActivePoint.java" line="18" class="stree.ActivePoint" package="stree">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -122,7 +124,7 @@
         <option name="CONDITION" value="activeNode == null&#13;&#13;JAVA" />
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/stree/SuffixTree.java" line="117" class="stree.SuffixTree" package="stree">
+      <breakpoint url="file://$PROJECT_DIR$/src/stree/SuffixTree.java" line="123" class="stree.SuffixTree" package="stree">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -137,7 +139,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/stree/SuffixTree.java" line="115" class="stree.SuffixTree" package="stree">
+      <breakpoint url="file://$PROJECT_DIR$/src/MainTest.java" line="12" class="MainTest" package="">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -152,7 +154,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/MainTest.java" line="11" class="MainTest" package="">
+      <breakpoint url="file://$PROJECT_DIR$/src/stree/Edge.java" line="18" class="stree.Edge" package="stree">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -164,26 +166,10 @@
         <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/MainTest.java" line="10" class="MainTest" package="">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
+        <option name="CONDITION" value="startIndex.index &lt; 0&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </line_breakpoints>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -196,7 +182,7 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="17" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
+            <state line="24" column="36" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -205,28 +191,34 @@
       <file leaf-file-name="MainTest.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MainTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
+            <state line="12" column="2" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SuffixTree.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SuffixTree.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stree/SuffixTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="443" selection-end="443" vertical-scroll-proportion="0.575">
-              <folding>
-                <element signature="e#4593#4790#0" expanded="true" />
-                <element signature="e#4779#4780#0" expanded="true" />
-              </folding>
+            <state line="143" column="19" selection-start="6057" selection-end="6057" vertical-scroll-proportion="-13.16">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Edge.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Edge.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/stree/Edge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="82" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+            <state line="66" column="0" selection-start="1640" selection-end="1754" vertical-scroll-proportion="0.85162604">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="String.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_10/src.zip!/java/lang/String.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1910" column="0" selection-start="75549" selection-end="75549" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -235,7 +227,7 @@
       <file leaf-file-name="ActivePoint.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/stree/ActivePoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="23" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.0">
+            <state line="52" column="19" selection-start="1314" selection-end="1314" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -278,17 +270,17 @@
         <option value="$PROJECT_DIR$/src/stree/Index.java" />
         <option value="$PROJECT_DIR$/src/stree/Vertex.java" />
         <option value="$PROJECT_DIR$/src/stree/ActivePoint.java" />
-        <option value="$PROJECT_DIR$/src/stree/Edge.java" />
         <option value="$PROJECT_DIR$/src/MainTest.java" />
+        <option value="$PROJECT_DIR$/src/stree/Edge.java" />
         <option value="$PROJECT_DIR$/src/stree/SuffixTree.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="32" />
-    <option name="width" value="1296" />
-    <option name="height" value="776" />
+    <option name="x" value="1272" />
+    <option name="y" value="-8" />
+    <option name="width" value="1696" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -318,7 +310,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -371,7 +363,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -388,9 +380,9 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.MainTest">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
@@ -498,7 +490,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1296" height="776" extended-state="6" />
+    <frame x="1272" y="-8" width="1696" height="1066" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -506,13 +498,13 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.74230146" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42888644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3306321" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24847001" sideWeight="0.49942464" order="1" side_tool="false" content_ui="tabs" />
@@ -520,8 +512,8 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17098865" sideWeight="0.25769854" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5218801" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12913096" sideWeight="0.5711136" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5909592" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -622,10 +614,7 @@
     <entry file="file://$PROJECT_DIR$/src/stree/SuffixTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="0" selection-start="1016" selection-end="1016" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#4593#4790#0" expanded="true" />
-            <element signature="e#4779#4780#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -646,23 +635,13 @@
     <entry file="file://$PROJECT_DIR$/src/stree/SuffixTree.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="21" selection-start="555" selection-end="639" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#4593#4790#0" expanded="true" />
-            <element signature="e#4779#4780#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stree/Vertex.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="29" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="17" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -674,13 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.7.0_10/src.zip!/java/lang/String.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1910" column="0" selection-start="75549" selection-end="75549" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stree/Vertex.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="54" selection-start="608" selection-end="608" vertical-scroll-proportion="0.0">
@@ -688,34 +660,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stree/ActivePoint.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="23" selection-start="1058" selection-end="1058" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/stree/Edge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="82" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
+        <state line="24" column="36" selection-start="1119" selection-end="1119" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="316" selection-end="316" vertical-scroll-proportion="0.0">
+        <state line="12" column="2" selection-start="352" selection-end="352" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stree/ActivePoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="19" selection-start="1314" selection-end="1314" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stree/SuffixTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="443" selection-end="443" vertical-scroll-proportion="0.575">
-          <folding>
-            <element signature="e#4593#4790#0" expanded="true" />
-            <element signature="e#4779#4780#0" expanded="true" />
-          </folding>
+        <state line="143" column="19" selection-start="6057" selection-end="6057" vertical-scroll-proportion="-13.16">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_10/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1910" column="0" selection-start="75549" selection-end="75549" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stree/Edge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="66" column="0" selection-start="1640" selection-end="1754" vertical-scroll-proportion="0.85162604">
+          <folding />
         </state>
       </provider>
     </entry>
