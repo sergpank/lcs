@@ -10,7 +10,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class MainTest {
+public class MonoMain {
 
     public static final int STRINGS_NR = 10;
 
